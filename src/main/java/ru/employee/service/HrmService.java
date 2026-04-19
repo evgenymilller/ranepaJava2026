@@ -3,14 +3,12 @@ package ru.employee.service;
 import ru.employee.model.Employee;
 import ru.employee.repository.EmployeeRepository;
 
-import java.io.IOException;
-import java.nio.charset.StandardCharsets;
-import java.nio.file.Files;
-import java.nio.file.Path;
 import java.time.LocalDate;
 import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
+import java.io.FileWriter;
+import java.io.IOException;
 
 public class HrmService {
     private final EmployeeRepository employeeRepository;
@@ -63,14 +61,33 @@ public class HrmService {
 
     public List<Employee> saveToTXT() {
         List<Employee> employees = employeeRepository.findAll();
-        
+        String fileName = "employees.txt";
+        try (FileWriter writer = new FileWriter(fileName)) {
+            writer.write(employees.toString());
+            System.out.println("Data saved to: " + fileName);
+        } catch (IOException e) {
+            System.out.println("Error while writing to file: " + e.getMessage());
+        }
         return employees;
     }
 
 
     public List<Employee> saveToCSV() {
         List<Employee> employees = employeeRepository.findAll();
-        
+        String fileName = "employees.csv";
+        try (FileWriter writer = new FileWriter(fileName)) {
+            writer.write("Name,Position,Salary,HireDate\n");
+            for (Employee employee : employees) {
+                String line = employee.getName() + "," +
+                employee.getPosition() + "," +
+                employee.getSalary() + "," +
+                employee.getHireDate() + "\n";
+                writer.write(line);
+            }
+            System.out.println("Data saved to: " + fileName);
+        } catch (IOException e) {
+            System.out.println("Error while writing to file: " + e.getMessage());
+        }
         return employees;
     }
 }

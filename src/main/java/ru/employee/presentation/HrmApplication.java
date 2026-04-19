@@ -49,9 +49,7 @@ public class HrmApplication {
                 case 5:
                     showStatistics(hrmService);
                     break;
-                case 8:
-
-                case 7:
+                case 6:
                     while (true) {
                         System.out.println("Do you want to save changes before exiting?");
                         System.out.println("1. No");
@@ -189,12 +187,18 @@ public class HrmApplication {
     }
 
     private static void saveToTXT(HrmService hrmService) {
-        List<Employee> employees = hrmService.saveToTXT();
-        // Логика сохранения в TXT файл
+        try {
+            hrmService.saveToTXT();
+        } catch (Exception e) {
+            System.out.println("Error while saving to TXT: " + e.getMessage());
+        }
     }
 
     private static void saveToCSV(HrmService hrmService) {
-        List<Employee> employees = hrmService.saveToCSV();
-        // Логика сохранения в CSV файл
+        try {
+            hrmService.saveToCSV();
+        } catch (Exception e) {
+            System.out.println("Error while saving to CSV: " + e.getMessage());
+        }
     }
 }

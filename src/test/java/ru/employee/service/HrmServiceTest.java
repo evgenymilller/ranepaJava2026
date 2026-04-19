@@ -46,4 +46,19 @@ public class HrmServiceTest {
 
         assertEquals("Иван", top.getName());
     }
+
+
+    @Test
+    void testSaveToTXT(){
+        EmployeeRepository repository = new EmployeeRepository();
+        HrmService service = new HrmService(repository);
+
+        service.addEmployee("Иван", "CEO", 300.0, LocalDate.of(2024, 1, 10));
+        service.addEmployee("Мария", "РОП", 200.0, LocalDate.of(2024, 2, 10));
+        service.addEmployee("Петр", "Аналитик", 100.0, LocalDate.of(2024, 3, 10));
+
+        var employees = service.saveToTXT();
+
+        assertEquals(3, employees.size());
+    }
 }
