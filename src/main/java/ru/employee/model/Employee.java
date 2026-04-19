@@ -1,4 +1,4 @@
-package employee.model;
+package ru.employee.model;
 import java.time.LocalDate; 
 
 public class Employee {

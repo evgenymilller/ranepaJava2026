@@ -1,4 +1,4 @@
-package employee.service;
+package ru.employee.service;
 
 public class HrmService {
     

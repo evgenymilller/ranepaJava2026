@@ -1,6 +1,6 @@
-package employee.repository;
+package ru.employee.repository;
 
-import employee.model.Employee;
+import ru.employee.model.Employee;
 
 import java.util.ArrayList;
 import java.util.HashMap;
