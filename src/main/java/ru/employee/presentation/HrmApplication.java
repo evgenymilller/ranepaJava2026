@@ -68,12 +68,12 @@ public class HrmApplication {
                             scanner.close();
                             return;
                         case 2:
-                            saveToTXT(hrmService);
+                            saveEmployeesToTXT(hrmService);
                             System.out.println("Goodbye!");
                             scanner.close();
                             return;
                         case 3:
-                            saveToCSV(hrmService);
+                            saveEmployeesToCSV(hrmService);
                             System.out.println("Goodbye!");
                             scanner.close();
                             return;
@@ -186,7 +186,7 @@ public class HrmApplication {
         }
     }
 
-    private static void saveToTXT(HrmService hrmService) {
+    private static void saveEmployeesToTXT(HrmService hrmService) {
         try {
             hrmService.saveToTXT();
         } catch (Exception e) {
@@ -194,7 +194,7 @@ public class HrmApplication {
         }
     }
 
-    private static void saveToCSV(HrmService hrmService) {
+    private static void saveEmployeesToCSV(HrmService hrmService) {
         try {
             hrmService.saveToCSV();
         } catch (Exception e) {
