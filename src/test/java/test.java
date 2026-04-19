@@ -1,3 +1,4 @@
+
 import org.junit.jupiter.api.Test;
 import ru.employee.model.Employee;
 import ru.employee.repository.EmployeeRepository;
@@ -22,7 +23,7 @@ public class test {
         System.out.println("TEST RUNNING");
         System.out.println("Average salary: " + average);
 
-        assertEquals(200.0, average, 0.000001);
+        assertEquals(200.0, average);
     }
 
     @Test

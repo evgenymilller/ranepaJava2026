@@ -16,8 +16,4 @@ dependencies {
 
 test {
     useJUnitPlatform()
-    testLogging {
-        showStandardStreams = true
-        events "passed", "failed", "skipped", "standard_out", "standard_error"
-    }
 }
