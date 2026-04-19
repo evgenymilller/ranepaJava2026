@@ -3,6 +3,10 @@ package ru.employee.service;
 import ru.employee.model.Employee;
 import ru.employee.repository.EmployeeRepository;
 
+import java.io.IOException;
+import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.time.LocalDate;
 import java.util.Comparator;
 import java.util.List;
@@ -57,4 +61,16 @@ public class HrmService {
                 .collect(Collectors.toList());
     }
 
+    public List<Employee> saveToTXT() {
+        List<Employee> employees = employeeRepository.findAll();
+        
+        return employees;
+    }
+
+
+    public List<Employee> saveToCSV() {
+        List<Employee> employees = employeeRepository.findAll();
+        
+        return employees;
+    }
 }

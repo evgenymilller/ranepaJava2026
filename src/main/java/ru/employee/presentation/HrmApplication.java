@@ -49,10 +49,41 @@ public class HrmApplication {
                 case 5:
                     showStatistics(hrmService);
                     break;
-                case 6:
-                    System.out.println("Goodbye!");
-                    scanner.close();
-                    return;
+                case 8:
+
+                case 7:
+                    while (true) {
+                        System.out.println("Do you want to save changes before exiting?");
+                        System.out.println("1. No");
+                        System.out.println("2. Yes (txt)");
+                        System.out.println("3. Yes (csv)");
+                        int choiceOut;
+                        try {
+                            choiceOut = Integer.parseInt(scanner.nextLine());
+                        } catch (NumberFormatException e) {
+                            System.out.println("Invalid input. Enter a number.");
+                            continue;
+                        }
+                        switch (choiceOut) {
+                        case 1:
+                            System.out.println("Goodbye!");
+                            scanner.close();
+                            return;
+                        case 2:
+                            saveToTXT(hrmService);
+                            System.out.println("Goodbye!");
+                            scanner.close();
+                            return;
+                        case 3:
+                            saveToCSV(hrmService);
+                            System.out.println("Goodbye!");
+                            scanner.close();
+                            return;
+                        default:
+                            System.out.println("Unknown menu item.");
+                        }
+                    }
+                    
                 default:
                     System.out.println("Unknown menu item.");
             }
@@ -155,5 +186,15 @@ public class HrmApplication {
         } else {
             System.out.println("No employees in system.");
         }
+    }
+
+    private static void saveToTXT(HrmService hrmService) {
+        List<Employee> employees = hrmService.saveToTXT();
+        // Логика сохранения в TXT файл
+    }
+
+    private static void saveToCSV(HrmService hrmService) {
+        List<Employee> employees = hrmService.saveToCSV();
+        // Логика сохранения в CSV файл
     }
 }
