@@ -22,7 +22,8 @@ public class HrmApplication {
             System.out.println("3. Delete employee by ID");
             System.out.println("4. Find employee by ID");
             System.out.println("5. Show statistics");
-            System.out.println("6. Exit");
+            System.out.println("6. Show employees filtered by position");
+            System.out.println("7. Exit");
             System.out.print("Choose an option: ");
 
             int choice;
@@ -50,11 +51,15 @@ public class HrmApplication {
                     showStatistics(hrmService);
                     break;
                 case 6:
+                    filteredEmployees(scanner, hrmService);
+                    break;
+                case 7:
                     while (true) {
                         System.out.println("Do you want to save changes before exiting?");
                         System.out.println("1. No");
                         System.out.println("2. Yes (txt)");
                         System.out.println("3. Yes (csv)");
+                        System.out.print("Choose an option: ");
                         int choiceOut;
                         try {
                             choiceOut = Integer.parseInt(scanner.nextLine());
@@ -199,6 +204,26 @@ public class HrmApplication {
             hrmService.saveToCSV();
         } catch (Exception e) {
             System.out.println("Error while saving to CSV: " + e.getMessage());
+        }
+    }
+
+    private static void filteredEmployees(Scanner scanner, HrmService hrmService) {
+        System.out.print("Enter employee position: ");
+        String position = scanner.nextLine().trim();
+
+        if (position.isEmpty()) {
+            System.out.println("Position cannot be empty.");
+            return;
+        }
+
+        List<Employee> filteredEmployees = hrmService.findByPosition(position);
+        if (filteredEmployees.isEmpty()) {
+            System.out.println("No employees found for position: " + position);
+            return;
+        }
+
+        for (Employee employee : filteredEmployees) {
+            System.out.println(employee);
         }
     }
 }
