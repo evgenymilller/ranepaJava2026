@@ -46,15 +46,13 @@ public class HrmService {
     }
 
     public Employee findTopPaidEmployee() {
-        return employeeRepository.findAll()
-                .stream()
+        return employeeRepository.findAll().stream()
                 .max(Comparator.comparingDouble(Employee::getSalary))
                 .orElse(null);
     }
 
     public List<Employee> findByPosition(String position) {
-        return employeeRepository.findAll()
-                .stream()
+        return employeeRepository.findAll().stream()
                 .filter(employee -> employee.getPosition().equalsIgnoreCase(position))
                 .collect(Collectors.toList());
     }
