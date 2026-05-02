@@ -39,4 +39,34 @@ public class EmployeeService {
     public List<Employee> getEmployeeBySalaryGreaterThanEqual(BigDecimal salary) {
         return employeeRepository.findBySalaryGreaterThanEqual(salary);
     }
+
+    public List<Employee> getAllEmployees() {
+        return employeeRepository.findAll();
+    }
+
+    public Employee createEmployee(Employee employee) {
+        return employeeRepository.save(employee);
+    }
+
+    public void deleteEmployeeById(Long id) {
+        employeeRepository.deleteById(id);
+    }
+
+    public double calculateAverageSalary() {
+        List<Employee> employees = employeeRepository.findAll();
+        if (employees.isEmpty()) {
+            return 0.0;
+        }
+        double sum = 0;
+        for (Employee employee : employees) {
+            sum += employee.getSalary().doubleValue();
+        }
+        return sum / employees.size();
+    }
+
+    public Employee findTopPaidEmployee() {
+        return employeeRepository.findAll().stream()
+                .max((e1, e2) -> e1.getSalary().compareTo(e2.getSalary()))
+                .orElse(null);
+    }
 }
