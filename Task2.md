@@ -44,17 +44,20 @@ src/main/java/com/example/hrm/
 ### Шаг 2: Репозиторий (`EmployeeRepository`)
 
 Реализуйте в вашем репозитории интерфейс `JpaRepository<Employee, Long>`
-Добавьте дополнительные методы. 
+Добавьте дополнительные методы.
+
 * Дополнительные методы поиска:
   * `findByPosition(String position)`
   * `findBySalaryGreaterThanEqual(BigDecimal salary)`
 
 ### Шаг 3: Бизнес-логика (`EmployeeService`)
-Отметьте `EmployeeService` как компонент при помощи аннотации `@Service`. 
-Добавьте поле `EmployeeRepository` и укажите его в конструкторе. 
-Переделайте методы так, чтобы они ссылались на методы репозитория. 
+
+Отметьте `EmployeeService` как компонент при помощи аннотации `@Service`.
+Добавьте поле `EmployeeRepository` и укажите его в конструкторе.
+Переделайте методы так, чтобы они ссылались на методы репозитория.
 
 ### Шаг 4: REST API (`EmployeeController`)
+
 В пакете Controller добавьте класс `EmployeeController` с зависимостью на `EmployeeService`.
 Реализуйте REST endpoints:
 
@@ -70,6 +73,7 @@ GET     /api/employees/stats     — статистика (средняя ЗП, 
 ### Шаг 5: DTO классы
 
 Создайте:
+
 * `EmployeeRequestDto` — для создания (без ID)
 * `EmployeeResponseDto` — для ответа (с ID и всеми полями)
 * `EmployeeStatsDto` — для статистики
@@ -77,6 +81,7 @@ GET     /api/employees/stats     — статистика (средняя ЗП, 
 ## 5. Конфигурация Spring Boot
 
 ### application.properties:
+
 ```properties
 # H2 Database
 spring.datasource.url=jdbc:h2:mem:hrm
@@ -101,7 +106,7 @@ spring.jackson.date-format=yyyy-MM-dd
 class EmployeeControllerTest {
     @Autowired
     private MockMvc mockMvc;
-    
+  
     @Test
     void shouldReturnAllEmployees() throws Exception {
         // Given-When-Then с использованием MockMvc
@@ -110,6 +115,7 @@ class EmployeeControllerTest {
 ```
 
 **Что тестировать:**
+
 1. Создание сотрудника (POST 201 Created)
 2. Получение списка (GET 200 OK)
 3. Получение несуществующего (GET 404 Not Found)
@@ -132,21 +138,25 @@ POST /api/employees
 ## 9. Критерии оценки (Definition of Done)
 
 ### Обязательно (уровень 1/3):
+
 1. ✅ Spring Boot проект запускается
 2. ✅ CRUD операции через REST API работают
 3. ✅ H2 база данных создается автоматически
 4. ✅ Swagger документация доступна
 
 ### Желательно (уровень 2/3):
+
 1. ✅ DTO классы вместо прямой работы с Entity
 2. ✅ Обработка ошибок (@Valid, @ExceptionHandler)
 3. ✅ Интеграционные тесты (3+ теста)
 
 ### Продвинутый уровень (3/3):
+
 1. ✅ Сортировка (`Pageable` в репозитории)
 2. ✅ Валидация (`@NotNull`, `@Positive`)
 3. ✅ Кастомные исключения и GlobalExceptionHandler
 
 Проверить:
+
 - `http://localhost:8080/h2-console` (база данных)
 - `http://localhost:8080/swagger-ui.html` (API)

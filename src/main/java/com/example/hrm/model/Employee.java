@@ -2,7 +2,6 @@ package com.example.hrm.model;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -40,7 +39,7 @@ public class Employee {
     private LocalDate hireDate;
 
     @Column(nullable = false, updatable = false)
-    private LocalDateTime createdAt;
+    private LocalDate createdDate;
 
     public Employee() {
     }
@@ -73,8 +72,8 @@ public class Employee {
         return hireDate;
     }
 
-    public LocalDateTime getCreatedAt() {
-        return createdAt;
+    public LocalDate getCreatedDate() {
+        return createdDate;
     }
 
     // Сеттеры
@@ -96,8 +95,8 @@ public class Employee {
 
     @PrePersist
     public void prePersist() {
-        if (this.createdAt == null) {
-            this.createdAt = LocalDateTime.now();
+        if (this.createdDate == null) {
+            this.createdDate = LocalDate.now();
         }
     }
 
@@ -109,7 +108,7 @@ public class Employee {
                 ", position='" + position + '\'' +
                 ", salary=" + salary +
                 ", hireDate=" + hireDate +
-                ", createdAt=" + createdAt +
+                ", createdDate=" + createdDate +
                 '}';
     }
 }
