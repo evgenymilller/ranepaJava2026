@@ -11,6 +11,10 @@ springBoot {
     mainClass = 'com.example.hrm.HrmApplication'
 }
 
+bootRun {
+    mainClass = 'com.example.hrm.HrmApplication'
+}
+
 repositories {
     mavenCentral()
 }

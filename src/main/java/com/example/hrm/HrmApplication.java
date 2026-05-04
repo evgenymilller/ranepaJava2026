@@ -1,4 +1,4 @@
-package com.example.hrm.HrmApplication;
+package com.example.hrm;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
